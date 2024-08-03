@@ -17,12 +17,8 @@ class signUp extends StatelessWidget {
         color: primary,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          child: ListView(
             children: [
-              Spacer(
-                flex: 3,
-              ),
               SvgPicture.asset(
                 colorFilter: ColorFilter.mode(Colors.green, BlendMode.srcIn),
                 "assets/f1d84b87-c3aa-4d53-ad5e-c14c1c7e385b.svg",
@@ -32,13 +28,11 @@ class signUp extends StatelessWidget {
                     padding: const EdgeInsets.all(30.0),
                     child: const CircularProgressIndicator()),
               ),
-              Spacer(),
               Text("Get start",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 30,
                   )),
-              Spacer(),
               Textinputfileds(),
               SizedBox(
                 height: 12,
@@ -57,9 +51,6 @@ class signUp extends StatelessWidget {
                 navigate: () => Navigator.pop(context),
                 fullText: "You have account ",
                 text: "sign In ",
-              ),
-              Spacer(
-                flex: 3,
               ),
             ],
           ),
