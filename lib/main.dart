@@ -1,4 +1,5 @@
 import 'package:chaty/screen/login.dart';
+import 'package:chaty/screen/signUp.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,11 +11,13 @@ class home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      routes: {
+        "LoginPage": (context) => const Login(),
+        "signup": (context) => const signUp()
+      },
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: Login(),
-      ),
+      initialRoute: "LoginPage",
     );
   }
 }

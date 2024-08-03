@@ -1,7 +1,9 @@
+import 'package:chaty/screen/signUp.dart';
 import 'package:flutter/material.dart';
 
 class customBtn extends StatelessWidget {
-  const customBtn({super.key});
+  const customBtn({super.key, required this.TextBtn});
+  final String TextBtn;
 
   @override
   Widget build(BuildContext context) {
@@ -9,9 +11,9 @@ class customBtn extends StatelessWidget {
       child: SizedBox(
         width: 300,
         child: ElevatedButton(
-          onPressed: null,
+          onPressed: () {},
           child: Text(
-            "login",
+            TextBtn,
             style: TextStyle(fontSize: 23),
           ),
           style: ButtonStyle(
