@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 class Textinputfileds extends StatelessWidget {
-  const Textinputfileds({super.key});
+  Textinputfileds({super.key, this.onchanged});
+  Function(String)? onchanged;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onChanged: onchanged,
       decoration: InputDecoration(
         suffixIcon: Icon(
           Icons.person_3_rounded,

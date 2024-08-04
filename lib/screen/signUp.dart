@@ -1,13 +1,18 @@
+import 'dart:ffi';
+
 import 'package:chaty/screen/login.dart';
 import 'package:chaty/widget/TextInPutFileds.dart';
 import 'package:chaty/widget/btn.dart';
 import 'package:chaty/widget/richTextLibe.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class signUp extends StatelessWidget {
-  const signUp({super.key});
+  signUp({super.key});
+  String? email;
+  String? Paassword;
 
   @override
   Widget build(BuildContext context) {
@@ -33,15 +38,35 @@ class signUp extends StatelessWidget {
                     color: Colors.white,
                     fontSize: 30,
                   )),
-              Textinputfileds(),
+              Textinputfileds(
+                onchanged: (data) {
+                  email = data;
+                },
+              ),
               SizedBox(
                 height: 12,
               ),
-              Textinputfileds(),
+              Textinputfileds(
+                onchanged: (data) {
+                  Paassword = data;
+                },
+              ),
               SizedBox(
                 height: 12,
               ),
               customBtn(
+                ontap: () async {
+                  try {
+                    await registerUser();
+                  } on FirebaseAuthException catch (e) {
+                    if (e.code == 'weak-password') {
+                      handleWeakPasswordError(context);
+                    } else if (e.code == 'email-already-in-use') {
+                      alreadyExistEmal(context);
+                    }
+                  }
+                  signComplete(context);
+                },
                 TextBtn: "Sign UP",
               ),
               SizedBox(
@@ -57,5 +82,48 @@ class signUp extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void signComplete(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: Colors.green.shade100,
+        content: Text(
+          "you have registered successfully",
+          style: TextStyle(color: Colors.white),
+        ),
+      ),
+    );
+  }
+
+  void alreadyExistEmal(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: Colors.red.shade100,
+        content: Text(
+          "this already exist",
+          style: TextStyle(color: Colors.white),
+        ),
+      ),
+    );
+  }
+
+  void handleWeakPasswordError(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: Colors.red.shade100,
+        content: Text(
+          "entre strong password",
+          style: TextStyle(color: Colors.white),
+        ),
+      ),
+    );
+  }
+
+  Future<UserCredential> registerUser() async {
+    var auth = FirebaseAuth.instance;
+    UserCredential user = await auth.createUserWithEmailAndPassword(
+        email: email!, password: Paassword!);
+    return user;
   }
 }
