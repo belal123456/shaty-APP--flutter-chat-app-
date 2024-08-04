@@ -22,7 +22,7 @@ class home extends StatelessWidget {
       routes: {
         "LoginPage": (context) => Login(),
         "signup": (context) => signUp(),
-        "welcome": (context) => const Welcome(),
+        "welcome": (context) => Welcome(),
       },
       debugShowCheckedModeBanner: false,
       initialRoute: "LoginPage",

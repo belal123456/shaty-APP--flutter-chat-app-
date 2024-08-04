@@ -45,9 +45,6 @@ class _LoginState extends State<Login> {
           color: primary,
           child: ListView(
             children: [
-              const Spacer(
-                flex: 4,
-              ),
               SvgPicture.asset(
                 colorFilter:
                     const ColorFilter.mode(Colors.white, BlendMode.srcIn),
@@ -65,7 +62,6 @@ class _LoginState extends State<Login> {
                 "chat with your friends & more",
                 style: TextStyle(fontSize: 24, color: Colors.white),
               ),
-              const Spacer(),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -196,9 +192,6 @@ class _LoginState extends State<Login> {
                     text: "sign Up",
                   )
                 ],
-              ),
-              const Spacer(
-                flex: 4,
               ),
             ],
           ),

@@ -118,7 +118,7 @@ class _signUpState extends State<signUp> {
                       setState(() {});
 
                       signComplete(context);
-                      Navigator.pop(context);
+                      Navigator.pushNamed(context, "welcome");
                     }
                   },
                   textBtn: "Sign UP",
