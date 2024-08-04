@@ -1,11 +1,10 @@
-import 'package:chaty/screen/signUp.dart';
 import 'package:flutter/material.dart';
 
 class customBtn extends StatelessWidget {
   // ignore: non_constant_identifier_names
-  customBtn({super.key, required this.TextBtn, this.ontap});
-  final String TextBtn;
-  VoidCallback? ontap;
+  customBtn({super.key, required this.textBtn, this.ontap});
+  final String textBtn;
+  final VoidCallback? ontap;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +14,7 @@ class customBtn extends StatelessWidget {
         child: ElevatedButton(
           onPressed: ontap,
           child: Text(
-            TextBtn,
+            textBtn,
             style: TextStyle(fontSize: 23),
           ),
           style: ButtonStyle(
